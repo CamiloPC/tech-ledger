@@ -75,6 +75,13 @@ export const appRoutes: Route[] = [
         },
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
+
+            //Modules
+            {path: 'modules', children: [
+                {path: 'contacts', loadChildren: () => import('app/modules/admin/contacts/contacts.routes')},
+                {path: 'products', loadChildren: () => import('app/modules/admin/products/products.routes')},
+                {path: 'saleInvoices', loadChildren: () => import('app/modules/admin/sale-invoices/sale-invoices.routes')},
+            ]},
         ]
     }
 ];

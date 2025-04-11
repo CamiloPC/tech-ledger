@@ -1,5 +1,5 @@
 <div
-    class="settings-cog fixed right-0 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-l-lg bg-red-600 bg-opacity-90 shadow-lg print:hidden"
+    class="settings-cog right-0 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-l-lg"
     [class.lg:right-0]="
         config.layout === 'centered' || config.layout === 'material'
     "
@@ -10,7 +10,7 @@
     (click)="settingsDrawer.toggle()"
 >
     <mat-icon
-        class="animate-spin-slow text-white icon-size-5"
+        class="animate-spin-slow icon-size-5"
         [svgIcon]="'heroicons_solid:cog-8-tooth'"
     ></mat-icon>
 </div>
@@ -32,7 +32,7 @@
                 [svgIcon]="'heroicons_solid:cog-8-tooth'"
             ></mat-icon>
             <div class="ml-3 text-2xl font-semibold tracking-tight">
-                Settings
+                Ajustes
             </div>
             <button
                 class="ml-auto"
@@ -48,7 +48,7 @@
 
         <div class="flex flex-col p-6">
             <!-- Theme -->
-            <div class="text-secondary text-md font-semibold">THEME</div>
+            <div class="text-secondary text-md font-semibold">TEMA</div>
             <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 @for (theme of config.themes; track theme) {
                     <div
@@ -73,13 +73,13 @@
             <hr class="my-8" />
 
             <!-- Scheme -->
-            <div class="text-secondary text-md font-semibold">SCHEME</div>
+            <div class="text-secondary text-md font-semibold">MODO</div>
             <div class="mt-6 grid grid-cols-3 justify-items-start gap-3">
                 <!-- Auto -->
                 <div
                     class="bg-hover flex cursor-pointer items-center rounded-full py-3 pl-5 pr-6 ring-inset ring-primary"
                     [class.ring-2]="config.scheme === 'auto'"
-                    matTooltip="Automatically sets the scheme based on user's operating system's color scheme preference using 'prefer-color-scheme' media query."
+                    matTooltip="Ajusta automáticamente el esquema de colores según la configuración del sistema operativo del usuario."
                     (click)="setScheme('auto')"
                 >
                     <div class="flex items-center overflow-hidden rounded-full">
