@@ -1,0 +1,88 @@
+<div class="flex min-w-0 flex-auto flex-col">
+    <!-- Header -->
+    <div class="bg-card">
+        <div class="mx-auto flex w-full max-w-screen-xl flex-col px-6 sm:px-8">
+            <div
+                class="my-8 flex min-w-0 flex-auto flex-col sm:my-12 sm:flex-row sm:items-center"
+            >
+                <!-- Avatar and name -->
+                <div class="flex min-w-0 flex-auto items-center">
+                    <div class="h-16 w-16 flex-0 overflow-hidden rounded-full">
+                        <img
+                            class="h-full w-full object-cover"
+                            src="images/avatars/brian-hughes.jpg"
+                        />
+                    </div>
+                    <div class="ml-4 flex min-w-0 flex-col">
+                        <ng-container *transloco="let t">
+                            <div
+                                class="truncate text-2xl font-semibold leading-7 tracking-tight md:text-5xl md:leading-snug"
+                            >
+                                {{ t('Bienvenido') }}, Brian!
+                            </div>
+                        </ng-container>
+                        <div class="flex items-center">
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:square-3-stack-3d'"
+                            ></mat-icon>
+                            <div
+                                class="text-secondary ml-1.5 truncate leading-6"
+                            >
+                                Gestiona tus datos contables
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="-mt-px pb-8 flex-auto border-t pt-4 sm:pt-6">
+                <div
+                    class="flex ml-6 font-semibold leading-7 tracking-tight md:text-2xl md:leading-snug"
+                >
+                    Selecciona un módulo para gestionar tu información contable
+                </div>
+            </div>
+            <!-- Page selector -->
+            <div
+                class="bg-default relative flex cursor-pointer self-start overflow-hidden rounded-t-xl border border-b-0 pb-1 pl-5 pr-4 pt-2"
+                matRipple
+                [matMenuTriggerFor]="projectsMenu"
+            >
+                <div class="flex items-center">
+                    <div class="overflow-hidden">
+                        <div class="truncate font-medium leading-6">
+                            Módulos
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center pl-2">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_mini:chevron-down'"
+                        ></mat-icon>
+                    </div>
+                </div>
+                <mat-menu #projectsMenu="matMenu" [xPosition]="'before'">
+                    <button
+                        mat-menu-item
+                        [routerLink]="['/modules/contacts']" routerLinkActive="router-link-active"
+                    >
+                        Contactos
+                    </button>
+                    <button
+                        mat-menu-item
+                        [routerLink]="['/modules/contacts']" routerLinkActive="router-link-active"
+                    >
+                        Productos
+                    </button>
+                    <button
+                        mat-menu-item
+                        [routerLink]="['/modules/contacts']" routerLinkActive="router-link-active"
+                    >
+                        Facturas
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+
+</div>
