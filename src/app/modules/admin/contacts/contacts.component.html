@@ -1,15 +1,82 @@
-<div class="flex min-w-0 flex-auto flex-col">
-    <!-- Main -->
-    <div class="flex-auto p-6 sm:p-10">
-        <!-- CONTENT GOES HERE -->
+<div class="flex-auto p-6 sm:p-10">
+    <div
+        class="bg-card flex flex-auto flex-col overflow-hidden rounded-2xl p-6 shadow sm:col-span-6"
+    >
+        <!-- Header -->
         <div
-            class="h-100 max-h-100 min-h-100 rounded-2xl border-2 border-dashed border-gray-300"
+            class="relative flex flex-0 flex-col border-b px-6 py-8 sm:flex-row sm:items-center sm:justify-between md:px-8"
         >
-            <div class="flex h-full justify-center">
-                <h1 class="text-2xl font-bold text-gray-500">
-                    Contacts Component
-                </h1>
+        <div class="text-4xl font-extrabold tracking-tight">Contactos</div>
+            <div class="mt-6 flex shrink-0 items-center sm:ml-4 sm:mt-0">
+                <!-- Search -->
+                <mat-form-field
+                    class="fuse-mat-dense fuse-mat-rounded lg:min-w-64"
+                    [subscriptSizing]="'dynamic'"
+                >
+                    <mat-icon
+                        class="icon-size-5"
+                        matPrefix
+                        [svgIcon]="'heroicons_solid:magnifying-glass'"
+                    ></mat-icon>
+                    <input
+                        matInput
+                        [autocomplete]="'off'"
+                        [placeholder]="'Buscar'"
+                    />
+                </mat-form-field>
+                <!-- Add center button -->
+                <button class="ml-4" mat-flat-button [color]="'primary'" (click)="openContactDialog()">
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                    <span class="ml-2 hidden sm:inline-block mr-1">Agregar contacto</span>
+                </button>
             </div>
+        </div>
+
+        <div class="mt-2 flex flex-auto flex-col overflow-x-auto">
+            <table
+                mat-table
+                [dataSource]="dataSource"
+                class="overflow-y-visible"
+            >
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.name }}
+                    </td>
+                </ng-container>
+
+                <!-- Address Column -->
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef>Dirección</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.address }}
+                    </td>
+                </ng-container>
+
+                <!-- Phone Number Column -->
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.phone }}
+                    </td>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Correo</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.email }}
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
         </div>
     </div>
 </div>

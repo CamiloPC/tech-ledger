@@ -27,7 +27,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 id   : 'saleInvoices',
                 title: 'Facturas',
                 type : 'basic',
-                icon : 'heroicons_outline:clipboard-document-list',
+                icon : 'heroicons_outline:calculator',
                 link : '/modules/saleInvoices'
             }
         ]
