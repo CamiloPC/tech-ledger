@@ -1,15 +1,103 @@
-<div class="flex min-w-0 flex-auto flex-col">
-    <!-- Main -->
-    <div class="flex-auto p-6 sm:p-10">
-        <!-- CONTENT GOES HERE -->
+<div class="flex-auto p-6 sm:p-10">
+    <div
+        class="bg-card flex flex-auto flex-col overflow-hidden rounded-2xl p-6 shadow sm:col-span-6"
+    >
+        <!-- Header -->
         <div
-            class="h-100 max-h-100 min-h-100 rounded-2xl border-2 border-dashed border-gray-300"
+            class="relative flex flex-0 flex-col border-b px-6 py-8 sm:flex-row sm:items-center sm:justify-between md:px-8"
         >
-            <div class="flex h-full justify-center">
-                <h1 class="text-2xl font-bold text-gray-500">
-                    Sale Invoices Component
-                </h1>
+        <div class="text-4xl font-extrabold tracking-tight">Facturas</div>
+            <div class="mt-6 flex shrink-0 items-center sm:ml-4 sm:mt-0">
+                <!-- Search -->
+                <mat-form-field
+                    class="fuse-mat-dense fuse-mat-rounded lg:min-w-64"
+                    [subscriptSizing]="'dynamic'"
+                >
+                    <mat-icon
+                        class="icon-size-5"
+                        matPrefix
+                        [svgIcon]="'heroicons_solid:magnifying-glass'"
+                    ></mat-icon>
+                    <input
+                        matInput
+                        [autocomplete]="'off'"
+                        [placeholder]="'Buscar'"
+                    />
+                </mat-form-field>
+                <!-- Add center button -->
+                <button class="ml-4" mat-flat-button [color]="'primary'" (click)="openIvoiceDialog()">
+                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                    <span class="ml-2 hidden sm:inline-block mr-1">Agregar factura</span>
+                </button>
             </div>
+        </div>
+
+        <div class="mt-2 flex flex-auto flex-col overflow-x-auto">
+            <table
+                mat-table
+                [dataSource]="dataSource"
+                class="overflow-y-visible"
+            >
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.name }}
+                    </td>
+                </ng-container>
+
+                <!-- Client Column -->
+                <ng-container matColumnDef="client">
+                    <th mat-header-cell *matHeaderCellDef>Cliente</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.client }}
+                    </td>
+                </ng-container>
+
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.date | date: 'MMM dd, y' }}
+                    </td>
+                </ng-container>
+
+                <!-- Amount Column -->
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>Monto total</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.amount | currency: 'USD' }}
+                    </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td mat-cell *matCellDef="let element">
+                        <span
+                            class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide"
+                            [ngClass]="{
+                                'bg-red-200 text-red-800 dark:bg-red-600 dark:text-red-50':
+                                    element.status === 'Pendiente',
+                                'bg-green-200 text-green-800 dark:bg-green-600 dark:text-green-50':
+                                element.status === 'Pagado',
+                            }"
+                        >
+                            <span
+                                class="whitespace-nowrap leading-relaxed"
+                                >{{ element.status }}</span
+                            >
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
         </div>
     </div>
 </div>
